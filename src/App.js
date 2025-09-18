@@ -43,13 +43,17 @@ export default function App() {
 }
 
 function FlashCards() {
-  const [isSelected, setIsSelected] = useState(2002);
+  const [isSelected, setIsSelected] = useState(null);
+  function handleClick(id) {
+    setIsSelected(id !== isSelected ? id : null);
+  }
   return (
     <div className="flashcards">
       {questions.map((question) => (
         <div
           key={question.id}
           className={question.id === isSelected ? "selected" : ""}
+          onClick={() => handleClick(question.id)}
         >
           <p>
             {question.id === isSelected ? question.answer : question.question}
